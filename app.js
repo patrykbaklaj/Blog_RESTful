@@ -51,6 +51,25 @@ app.get("/blogs", function(req, res){
 
 });
 
+// NEW ROUTE
+app.get("/blogs/new", function(req, res){
+  res.render("new");
+});
+
+
+// CREATE ROUTE
+app.post("/blogs", function(req, res){
+  // creating blog
+  Blog.create(req.body.blog, function(err, newBlog){
+    if (err) {
+      console.log("An error occurred");
+      res.render("new");
+    } else {
+      // redirect to index
+      res.redirect("/blogs");
+    }
+  });
+});
 
 
 
